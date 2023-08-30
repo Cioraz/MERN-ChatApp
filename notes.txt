@@ -1,0 +1,15 @@
+When u want to connect backend to frontend make sure you go in vite.config.js and change the proxy to your backend url
+
+
+server: {
+    proxy: {
+      '/api': {
+        target: "http://127.0.0.1:5000",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      }
+    }
+  }
+
+then in ur frontend u can use axios to make request to ur backend
