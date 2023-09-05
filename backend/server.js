@@ -1,23 +1,34 @@
 const express = require('express');
-const { chats } = require('./dummyData/data') // Taking the chats from the dummy data
-const dotenv = require('dotenv'); // Dotenv to ensure that the port or data is not publically visible
+// Taking the chats from the dummy data
+const { chats } = require('./dummyData/data')
+// Dotenv to store all environment variables
+const dotenv = require('dotenv');
+// Connecting to the database
+const connectDB = require('./config/db');
+const userRoutes = require('./routes/userRoutes');
+// Error middlewares
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
+// Configuring dotenv
+dotenv.config();
+// Connecting to database
+connectDB();
 const app = express();
 
+// To accept Json Data
+app.use(express.json());
+
+// To check if API is running
 app.get('/', (req, res) => {
     res.send("API running ")
 });
 
-// To get all the chats from the request
-app.get('/api/chat', (req, res) => {
-    res.send(chats);
-})
+// To use the routes in the app
+app.use('/api/user', userRoutes);
 
-// If ID of chat is known then the required chat can be printed out 
-app.get('/api/chat/:id', (req, res) => {
-    const singleChat = chats.find(c => c._id === req.params.id);
-    res.send(singleChat);
-})
+// Error middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 // Dotenv to get the port stored in it
 const PORT = process.env.PORT | 5000
