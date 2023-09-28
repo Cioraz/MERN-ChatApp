@@ -79,7 +79,7 @@ const SignUp = () => {
                 status: "error",
                 during: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top",
             });
             setLoading(false);
             return;
@@ -91,7 +91,7 @@ const SignUp = () => {
                 status: "error",
                 during: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top",
             });
             setLoading(false);
             return;
@@ -113,6 +113,7 @@ const SignUp = () => {
                 status: "success",
                 duration: 5000,
                 isClosable: true,
+                position: "top",
             })
 
             // Storing the data onto the local storage for development
@@ -131,7 +132,7 @@ const SignUp = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
-                position: "bottom",
+                position: "top",
                 description: error.response.data.message,
             });
             setLoading(false);
@@ -146,7 +147,7 @@ const SignUp = () => {
                 <FormLabel>Name</FormLabel>
                 <Input
                     placeholder='Enter Your Name'
-                    bg="white"
+                    bg="black"
                     borderColor="black"
                     onChange={(e) => setName(e.target.value)}
                 />
@@ -155,7 +156,7 @@ const SignUp = () => {
                 <FormLabel>Email</FormLabel>
                 <Input
                     placeholder='Enter Your Email'
-                    bg="white"
+                    bg="black"
                     borderColor="black"
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -166,7 +167,7 @@ const SignUp = () => {
                     <Input
                         type={show_p ? 'text' : "password"}
                         placeholder='Enter Your Password'
-                        bg="white"
+                        bg="black"
                         borderColor="black"
                         onChange={(e) => setPassword(e.target.value)}
                     />
@@ -183,7 +184,7 @@ const SignUp = () => {
                     <Input
                         type={show_cp ? 'text' : "password"}
                         placeholder='Confirm Password'
-                        bg="white"
+                        bg="black"
                         borderColor="black"
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
@@ -199,6 +200,7 @@ const SignUp = () => {
                 <Input
                     type="file"
                     p={1.5}
+                    bg="black"
                     accept='image/*'
                     onChange={(e) => postDetails(e.target.files[0])}
                 />

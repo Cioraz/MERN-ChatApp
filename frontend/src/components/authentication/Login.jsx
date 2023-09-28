@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Input } from '@chakra-ui/react'
 import { useHistory } from 'react-router-dom'
 
+
 // Creating the Login Page
 const Login = () => {
     // Setting all required variables
@@ -28,6 +29,7 @@ const Login = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
+                position: "top",
             });
             setLoading(false);
             return;
@@ -47,6 +49,7 @@ const Login = () => {
                 status: "success",
                 duration: 5000,
                 isClosable: true,
+                position: "top",
             });
             localStorage.setItem("userInfo", JSON.stringify(data));
             setLoading(false);
@@ -57,6 +60,7 @@ const Login = () => {
                 status: "error",
                 duration: 5000,
                 isClosable: true,
+                position: "top",
                 description: error.response.data.message,
             });
             setLoading(false);
@@ -64,12 +68,12 @@ const Login = () => {
     };
 
     return (
-        <VStack spacing='5px'>
+        <VStack spacing='20px'>
             <FormControl id='email' isRequired>
                 <FormLabel>Email</FormLabel>
                 <Input
                     placeholder='Enter Your Email'
-                    bg="white"
+                    bg="black"
                     borderColor="black"
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -80,7 +84,7 @@ const Login = () => {
                     <Input
                         type={show ? 'text' : "password"}
                         placeholder='Enter Your Password'
-                        bg="white"
+                        bg="black"
                         borderColor="black"
                         onChange={(e) => setPassword(e.target.value)}
                     />

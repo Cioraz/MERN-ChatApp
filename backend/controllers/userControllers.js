@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler') // TO check for any kind o
 const User = require('../models/userModel');
 const generateToken = require("../config/generateToken");
 
+
 // To register the user
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, pic } = req.body; // Taking all required inputs from the front end
@@ -67,4 +68,22 @@ const authUser = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { registerUser, authUser };
+// /api/user?search=name
+// using queries
+const allUsers = asyncHandler(async (req, res) => {
+    const keyword = req.query.search ? {
+        $or: [
+            { name: { $regex: req.query.search, $options: "i" } },
+            { email: { $regex: req.query.search, $options: "i" } }, // i is case sensitive
+        ],
+
+    }
+        : {};
+    // all users except loggin in user
+    const users = await User.find(keyword)
+        .find({ _id: { $ne: req.user._id } }).select("-password"); // to prevent the current user from being signed in
+    res.send(users);
+
+});
+
+module.exports = { registerUser, authUser, allUsers };

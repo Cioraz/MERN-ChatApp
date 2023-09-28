@@ -1,11 +1,10 @@
 const express = require('express');
-// Taking the chats from the dummy data
-const { chats } = require('./dummyData/data')
 // Dotenv to store all environment variables
 const dotenv = require('dotenv');
 // Connecting to the database
 const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
+const chatRoutes = require('./routes/chatRoutes');
 // Error middlewares
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
@@ -25,6 +24,7 @@ app.get('/', (req, res) => {
 
 // To use the routes in the app
 app.use('/api/user', userRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Error middlewares
 app.use(notFound);
@@ -33,3 +33,5 @@ app.use(errorHandler);
 // Dotenv to get the port stored in it
 const PORT = process.env.PORT | 5000
 app.listen(PORT, console.log(`Port running on ${PORT}`));
+
+// sunil123 123

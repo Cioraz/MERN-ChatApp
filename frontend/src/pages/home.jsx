@@ -1,8 +1,8 @@
-import { Box, Container, Text } from '@chakra-ui/react'
 import React from 'react'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Box, Container, Text, Stack, HStack, VStack, Tabs, TabList, TabPanels, Tab, TabPanel, Image } from '@chakra-ui/react'
 import Login from "../components/authentication/Login";
 import SignUp from '../components/authentication/SignUp';
+import ReactTyped from "react-typed";
 
 const home = () => {
     return (
@@ -10,19 +10,20 @@ const home = () => {
             <Box
                 d='flex'
                 justifyContent='center'
-                p={3}
+                p={6}
+                pb={35}
                 w="100%"
                 m="40px 0 15px 0"
-                bg="#8ecae6"
-                borderRadius="lg"
-                borderWidth="1px"
+
             >
-                <Text fontSize="4xl" color="black" textAlign='center'>Your Chat</Text>
+                <Text fontSize="8xl" color="white" textAlign='center'>YourChat</Text>
+                <Text fontSize="5xl" color="whiteAlpha.500" textAlign='center'><ReactTyped strings={["- A Real Time Chat"]} typeSpeed={100} loop /></Text>
             </Box>
-            <Box bg="#8ecae6" w="100%" p={4} borderRadius="lg" borderWidth="1px">
-                <Tabs>
+            <Box bg="#282828" w="100%" p={4} borderRadius="lg" borderWidth="1px" opacity={0.8}>
+                <Tabs size='lg'  >
                     <TabList mb="1em">
-                        <Tab width="50%">Login</Tab>
+                        <Tab width="50%"
+                        >Login</Tab>
                         <Tab width="50%">Sign Up</Tab>
                     </TabList>
                     <TabPanels>
@@ -35,7 +36,6 @@ const home = () => {
                     </TabPanels>
                 </Tabs>
             </Box>
-
         </Container >
     )
 }
